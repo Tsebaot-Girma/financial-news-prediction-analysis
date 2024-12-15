@@ -45,3 +45,37 @@ def plot_top_publishers(article_counts, top_n=10):
     plt.ylabel("Number of Articles")
     plt.xticks(rotation=45)
     plt.show()
+    
+    # Function to plot sentiment distribution
+def plot_sentiment_distribution(sentiment_counts):
+    plt.figure(figsize=(8, 5))
+    sns.barplot(x=sentiment_counts.index, y=sentiment_counts.values)
+    plt.title('Sentiment Distribution of Headlines')
+    plt.xlabel('Sentiment')
+    plt.ylabel('Count')
+    plt.show()
+
+# Function to plot common keywords
+def plot_common_keywords(common_keywords):
+    keywords, counts = zip(*common_keywords)
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x=list(keywords), y=list(counts))
+    plt.title('Most Common Keywords in Headlines')
+    plt.xlabel('Keywords')
+    plt.ylabel('Count')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
+
+# Function to plot common bigrams
+def plot_common_bigrams(common_bigrams):
+    bigram_words, bigram_counts = zip(*common_bigrams)
+    bigram_labels = [' '.join(bigram) for bigram in bigram_words]
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x=list(bigram_labels), y=list(bigram_counts))
+    plt.title('Most Common Bigrams in Headlines')
+    plt.xlabel('Bigrams')
+    plt.ylabel('Count')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
