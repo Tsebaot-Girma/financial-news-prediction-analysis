@@ -52,6 +52,32 @@ def parse_dates(df, column_name="date"):
     """
     df[column_name] = pd.to_datetime(df[column_name], errors='coerce')
     return df
+def extract_hour_from_datetime(df, datetime_column):
+    """
+    Extract the hour from a datetime column.
+
+    Parameters:
+        df (DataFrame): The input dataframe.
+        datetime_column (str): Name of the datetime column.
+
+    Returns:
+        DataFrame: Dataframe with an added 'hour' column.
+    """
+    df['hour'] = df[datetime_column].dt.hour
+    return df
+
+def count_articles_by_hour(df, hour_column='hour'):
+    """
+    Count the number of articles published by hour.
+
+    Parameters:
+        df (DataFrame): The input dataframe.
+        hour_column (str): Name of the hour column.
+
+    Returns:
+        Series: Article counts grouped by hour.
+    """
+    return df[hour_column].value_counts().sort_index()
 
 def calculate_publication_trends(df, column_name="date"):
     """
@@ -65,4 +91,17 @@ def calculate_publication_trends(df, column_name="date"):
     - pd.Series: Publication counts per date.
     """
     return df[column_name].dt.date.value_counts().sort_index()
+def find_publication_spikes(publication_counts, threshold_factor=2):
+    """
+    Identify spikes in publication frequency.
+
+    Parameters:
+        publication_counts (Series): Publication counts by date.
+        threshold_factor (float): Multiplier for the standard deviation to define a spike.
+
+    Returns:
+        Series: Publication spikes exceeding the threshold.
+    """
+    threshold = publication_counts.mean() + threshold_factor * publication_counts.std()
+    return publication_counts[publication_counts > threshold]
 
