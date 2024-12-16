@@ -79,3 +79,18 @@ def plot_common_bigrams(common_bigrams):
     plt.xticks(rotation=45)
     plt.tight_layout()
     plt.show()
+def plot_time_distribution(time_distribution):
+    """
+    Plot the distribution of articles published by hour.
+
+    Parameters:
+        time_distribution (Series): Article counts by hour.
+    """
+    plt.figure(figsize=(12, 6))
+    sns.barplot(x=time_distribution.index, y=time_distribution.values)
+    plt.title('Article Publication Distribution by Hour')
+    plt.xlabel('Hour of Day')
+    plt.ylabel('Number of Articles')
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
