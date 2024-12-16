@@ -6,8 +6,8 @@ from nltk.corpus import stopwords
 from collections import Counter
 
 # Download NLTK resources if not already present
-#nltk.download('punkt')
-#nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('stopwords')
 
 # Define stopwords
 stop_words = set(stopwords.words('english'))
