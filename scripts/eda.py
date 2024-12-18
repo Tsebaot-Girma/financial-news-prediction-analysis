@@ -49,7 +49,7 @@ def parse_dates(df, column_name="date"):
     
     Returns:
     - pd.DataFrame: DataFrame with the parsed date column.
-    """
+    """ 
     df[column_name] = pd.to_datetime(df[column_name], errors='coerce')
     return df
 def extract_hour_from_datetime(df, datetime_column):
